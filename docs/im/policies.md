@@ -16,7 +16,7 @@ Policies are JSON documents that define the following:
 
 In other words, a policy defines the *states* that an index can be in, the *actions* to perform when in a state, and the conditions that must be met to *transition* between states.
 
-You have complete flexibility in the way you can design your policies. You can create any state, transition to any other state, and specify any number of actions in each state. 
+You have complete flexibility in the way you can design your policies. You can create any state, transition to any other state, and specify any number of actions in each state.
 
 This table lists the relevant fields of a policy.
 
@@ -226,6 +226,18 @@ Parameter | Description | Type | Required
 }
 ```
 
+You can use the `ctx` variable to represent a lot of information based on the executions of your policy. For example, if you specified the `rollover` operation, you can use `{% raw %}{{ctx.action.name}}{% endraw %}` in the message to represent the name of the rollover.
+
+This table shows the `ctx` variables that are always available:
+
+#### Guaranteed variables
+
+Variable | Type
+:--- | :---
+`index` | `string`
+`index_uuid` | `string`
+`policy_id` | `string`
+
 ---
 
 ## Transitions
@@ -289,7 +301,7 @@ After 30 days, the policy moves this index into a `delete` state. The service se
         "actions": [
           {
             "rollover": {
-              "min_age": "1d"
+              "min_index_age": "1d"
             }
           }
         ],
