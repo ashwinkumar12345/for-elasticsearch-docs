@@ -226,17 +226,17 @@ Parameter | Description | Type | Required
 }
 ```
 
-You can use the `ctx` variable to represent a lot of information based on the executions of your policy. For example, if you specified the `rollover` operation, you can use `{% raw %}{{ctx.action.name}}{% endraw %}` in the message to represent the name of the rollover.
+You can use `ctx` variables in your message to represent a number of policy parameters based on the past executions of your policy. For example, if your policy has a rollover action, you can use `{% raw %}{{ctx.action.name}}{% endraw %}` in your message to represent the name of the rollover.
 
-This table shows the `ctx` variables that are always available:
+The following `ctx` variable options are available for every policy:
 
-#### Guaranteed variables
+####Guaranteed variables
 
-Variable | Type
-:--- | :---
-`index` | `string`
-`index_uuid` | `string`
-`policy_id` | `string`
+Parameter | Description | Type
+:--- | :--- |:--- |:--- |
+`index` | The name of the index. | `string`
+`index_uuid` | The uuid of the index. | `string`
+`policy_id` | The name of the policy. | `string`
 
 ---
 
@@ -279,7 +279,7 @@ The following example transitions the index to a `cold` state after a period of 
 ]
 ```
 
-IM checks the conditions every  execution of the policy based on the set interval.
+IM checks the conditions on every execution of the policy based on the set interval.
 
 ## Example policy
 

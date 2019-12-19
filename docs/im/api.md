@@ -96,6 +96,63 @@ PUT _opendistro/_ism/policies/<policy-id>
 ```
 
 
+#### Sample response
+
+```json
+{
+  "_id": "ingest_policy",
+  "_version": 1,
+  "_primary_term": 1,
+  "_seq_no": 0,
+  "policy": {
+    "description": "ingesting logs",
+    "last_updated_time": 1562945389152,
+    "schema_version": 1,
+    "default_notification": null,
+    "default_state": "ingest",
+    "states": [
+      {
+        "name": "ingest",
+        "actions": [
+          {
+            "rollover": {
+              "min_doc_count": 5
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "state_name": "search"
+          }
+        ]
+      },
+      {
+        "name": "search",
+        "actions": [],
+        "transitions": [
+          {
+            "state_name": "delete",
+            "conditions": {
+              "min_index_age": "5m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "delete",
+        "actions": [
+          {
+            "delete": {}
+          }
+        ],
+        "transitions": []
+      }
+    ]
+  }
+}
+```
+
+
 ---
 
 ## Add policy
@@ -107,7 +164,7 @@ Adds a policy to an index. This operation does not change the policy if the inde
 ```json
 POST _opendistro/_ism/add/<index>
 {
-    "policy_id": "log_rotation"
+  "policy_id": "log_rotation"
 }
 ```
 
@@ -115,8 +172,8 @@ POST _opendistro/_ism/add/<index>
 
 ```json
 {
-    "failures": false,
-    "failed_indices": []
+  "failures": false,
+  "failed_indices": []
 }
 ```
 
@@ -137,48 +194,46 @@ PUT _opendistro/_ism/policies/
   "_primary_term": 1,
   "_seq_no": 0,
   "policy": {
-    "policy": {
-      "description": "ingesting logs",
-      "default_state": "ingest",
-      "states": [
-        {
-          "name": "ingest",
-          "actions": [
-            {
-              "rollover": {
-                "min_doc_count": 5
-              }
+    "description": "ingesting logs",
+    "default_state": "ingest",
+    "states": [
+      {
+        "name": "ingest",
+        "actions": [
+          {
+            "rollover": {
+              "min_doc_count": 5
             }
-          ],
-          "transitions": [
-            {
-              "state_name": "search"
+          }
+        ],
+        "transitions": [
+          {
+            "state_name": "search"
+          }
+        ]
+      },
+      {
+        "name": "search",
+        "actions": [],
+        "transitions": [
+          {
+            "state_name": "delete",
+            "conditions": {
+              "min_index_age": "5m"
             }
-          ]
-        },
-        {
-          "name": "search",
-          "actions": [],
-          "transitions": [
-            {
-              "state_name": "delete",
-              "conditions": {
-                "min_index_age": "5m"
-              }
-            }
-          ]
-        },
-        {
-          "name": "delete",
-          "actions": [
-            {
-              "delete": {}
-            }
-          ],
-          "transitions": []
-        }
-      ]
-    }
+          }
+        ]
+      },
+      {
+        "name": "delete",
+        "actions": [
+          {
+            "delete": {}
+          }
+        ],
+        "transitions": []
+      }
+    ]
   }
 }
 ```
@@ -193,79 +248,7 @@ PUT _opendistro/_ism/policies/
   "_primary_term": 1,
   "_seq_no": 1,
   "policy": {
-    "policy": {
-      "name": "ingesting logs",
-      "last_updated_time": 1562946116260,
-      "schema_version": 1,
-      "default_notification": null,
-      "default_state": "ingest",
-      "states": [
-        {
-          "name": "ingest",
-          "actions": [
-            {
-              "rollover": {
-                "min_doc_count": 5
-              }
-            }
-          ],
-          "transitions": [
-            {
-              "state_name": "search"
-            }
-          ]
-        },
-        {
-          "name": "search",
-          "actions": [],
-          "transitions": [
-            {
-              "state_name": "delete",
-              "conditions": {
-                "min_index_age": "4m"
-              }
-            }
-          ]
-        },
-        {
-          "name": "delete",
-          "actions": [
-            {
-              "delete": {}
-            }
-          ],
-          "transitions": []
-        }
-      ]
-    }
-  }
-}
-```
-
-
----
-
-## Get policy
-
-Gets the policy by `policy_id`.
-
-#### Request
-
-```json
-GET _opendistro/_ism/policies/<policy-id>
-```
-
-
-#### Sample response
-
-```json
-{
-  "_id": "ingest_policy",
-  "_version": 2,
-  "_seq_no": 1,
-  "_primary_term": 1,
-  "policy": {
-    "name": "ingesting logs",
+    "description": "ingesting logs",
     "last_updated_time": 1562946116260,
     "schema_version": 1,
     "default_notification": null,
@@ -293,7 +276,77 @@ GET _opendistro/_ism/policies/<policy-id>
           {
             "state_name": "delete",
             "conditions": {
-              "min_index_age": "4m"
+              "min_index_age": "5m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "delete",
+        "actions": [
+          {
+            "delete": {}
+          }
+        ],
+        "transitions": []
+      }
+    ]
+  }
+}
+```
+
+
+---
+
+## Get policy
+
+Gets the policy by `policy_id`.
+
+#### Request
+
+```json
+GET _opendistro/_ism/policies/<policy-id>
+```
+
+
+#### Sample response
+
+```json
+{
+  "_id": "ingest_policy",
+  "_version": 2,
+  "_seq_no": 1,
+  "_primary_term": 1,
+  "policy": {
+    "description": "ingesting logs",
+    "last_updated_time": 1562946116260,
+    "schema_version": 1,
+    "default_notification": null,
+    "default_state": "ingest",
+    "states": [
+      {
+        "name": "ingest",
+        "actions": [
+          {
+            "rollover": {
+              "min_doc_count": 5
+            }
+          }
+        ],
+        "transitions": [
+          {
+            "state_name": "search"
+          }
+        ]
+      },
+      {
+        "name": "search",
+        "actions": [],
+        "transitions": [
+          {
+            "state_name": "delete",
+            "conditions": {
+              "min_index_age": "5m"
             }
           }
         ]
@@ -364,8 +417,8 @@ POST _opendistro/_ism/remove/<index>
 
 ```json
 {
-    "failures": false,
-    "failed_indices": []
+  "failures": false,
+  "failed_indices": []
 }
 
 ```
@@ -381,9 +434,13 @@ Updates the managed index policy to a new policy (or to a new version of the pol
 ```json
 POST _opendistro/_ism/update_policy/<index>
 {
-    "policy_id": "log_rotation",
-    "state": "delete",
-    "include": [{ "state": "search" }]
+  "policy_id": "log_rotation",
+  "state": "delete",
+  "include": [
+    {
+      "state": "search"
+    }
+  ]
 }
 ```
 
@@ -392,8 +449,8 @@ POST _opendistro/_ism/update_policy/<index>
 
 ```json
 {
-    "failures": false,
-    "failed_indices": []
+  "failures": false,
+  "failed_indices": []
 }
 ```
 
@@ -409,7 +466,7 @@ Retries the failed action for an index. For the retry call to succeed, IM must m
 ```json
 POST _opendistro/_ism/retry/<index>
 {
-    "state": "delete"
+  "state": "delete"
 }
 ```
 
@@ -418,8 +475,8 @@ POST _opendistro/_ism/retry/<index>
 
 ```json
 {
-    "failures": false,
-    "failed_indices": []
+  "failures": false,
+  "failed_indices": []
 }
 ```
 
