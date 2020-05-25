@@ -219,6 +219,9 @@ KNN is only available as part of the all-in-one installs: Docker, RPM, and Debia
 sudo bin/elasticsearch-plugin install https://d3g5vo6xdbdb9a.cloudfront.net/downloads/elasticsearch-plugins/opendistro-anomaly-detection/opendistro-anomaly-detection-1.7.0.0.zip
 ```
 
+To install Anomaly Detection, you must first install the Job Scheduler plugin.
+To receive alert notification for anomalies, install the Alerting and Kibana plugins.
+
 
 ### Performance Analyzer
 
