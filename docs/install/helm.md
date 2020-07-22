@@ -57,7 +57,7 @@ The output shows you the specifications instantiated from the install.
 To customize the deployment, pass in the values that you want to override with a custom YAML file:
 
 ```bash
-helm install --values=customevalues.yaml opendistro-es-1.9.0.tgz
+helm install --values=customvalues.yaml opendistro-es-1.9.0.tgz
 ```
 
 #### Sample output
