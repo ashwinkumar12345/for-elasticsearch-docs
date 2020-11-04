@@ -2,7 +2,7 @@
 layout: default
 title: Monitoring
 parent: SQL
-nav_order: 15
+nav_order: 75
 ---
 
 # Monitoring

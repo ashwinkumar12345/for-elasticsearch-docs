@@ -2,7 +2,7 @@
 layout: default
 title: SQL CLI
 parent: SQL
-nav_order: 2
+nav_order: 5
 ---
 
 # SQL CLI

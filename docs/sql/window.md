@@ -2,7 +2,7 @@
 layout: default
 title: Window Functions
 parent: SQL
-nav_order: 11
+nav_order: 45
 ---
 
 # Window Functions

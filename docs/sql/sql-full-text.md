@@ -2,7 +2,7 @@
 layout: default
 title: Full-Text Search
 parent: SQL
-nav_order: 8
+nav_order: 25
 ---
 
 # Full-text search

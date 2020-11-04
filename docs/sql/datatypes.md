@@ -2,7 +2,7 @@
 layout: default
 title: Data Types
 parent: SQL
-nav_order: 73
+nav_order: 100
 ---
 
 # Data Types

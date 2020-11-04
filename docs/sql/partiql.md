@@ -2,7 +2,7 @@
 layout: default
 title: JSON Support
 parent: SQL
-nav_order: 7
+nav_order: 20
 ---
 
 # JSON Support

@@ -2,7 +2,7 @@
 layout: default
 title: Metadata Queries
 parent: SQL
-nav_order: 9
+nav_order: 30
 ---
 
 # Metadata queries

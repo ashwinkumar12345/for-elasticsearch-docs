@@ -2,7 +2,7 @@
 layout: default
 title: Basic Queries
 parent: SQL
-nav_order: 5
+nav_order: 10
 ---
 
 

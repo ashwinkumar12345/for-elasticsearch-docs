@@ -2,7 +2,7 @@
 layout: default
 title: Complex Queries
 parent: SQL
-nav_order: 6
+nav_order: 15
 ---
 
 # Complex queries
