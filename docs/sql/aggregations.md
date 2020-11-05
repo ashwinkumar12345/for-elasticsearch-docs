@@ -11,7 +11,7 @@ Aggregate functions use the `GROUP BY` clause to group sets of values into subse
 
 ## Group By
 
-Use the `GROUP BY` as an identifier, ordinal, or expression.
+Use the `GROUP BY` clause as an identifier, ordinal, or expression.
 
 ### Identifier
 
@@ -50,7 +50,7 @@ SELECT abs(account_number), sum(age) FROM accounts GROUP BY abs(account_number);
 
 ## Aggregation
 
-Use aggregations in select, expressions, or arguments of expressions.
+Use aggregations as a select, expression, or an argument of an expression.
 
 ### Select
 
@@ -63,9 +63,7 @@ SELECT gender, sum(age) FROM accounts GROUP BY gender;
 F | 28 |
 M | 101 |
 
-### Arguments of expression
-
-The aggregation could be used as arguments of expression:
+### Argument
 
 ```sql
 SELECT gender, sum(age) * 2 as sum2 FROM accounts GROUP BY gender;
@@ -76,7 +74,7 @@ SELECT gender, sum(age) * 2 as sum2 FROM accounts GROUP BY gender;
 F | 56 |
 M | 202 |
 
-### Expression as an argument
+### Expression
 
 ```sql
 SELECT gender, sum(age * 2) as sum2 FROM accounts GROUP BY gender;
@@ -89,7 +87,7 @@ M | 202 |
 
 ### COUNT
 
-Use the `COUNT` function to accepts arguments such as * or literals like 1.
+Use the `COUNT` function to accept arguments such as a `*` or a literal like `1`.
 The meaning of these different forms are as follows:
 
 - `COUNT(field)` - Only counts if given a field (or expression) is not null or missing in the input rows.
@@ -98,17 +96,16 @@ The meaning of these different forms are as follows:
 
 ## Having
 
-Use the `HAVING` clause to 
-A HAVING clause can serve as aggregation filter that filters out aggregated values satisfy the condition expression given.
+Use the `HAVING` clause to filter out aggregated values.
 
 ### HAVING with GROUP BY
 
-Aggregate expressions or its alias defined in SELECT clause can be used in HAVING condition.
+You can use aggregate expressions or its aliases defined in a `SELECT` clause in a `HAVING` condition.
 
-    It's recommended to use non-aggregate expression in WHERE although it's allowed to do this in HAVING clause.
-    The aggregation in HAVING clause is not necessarily same as that on select list. As extension to SQL standard, it's also not restricted to involve identifiers only on group by list.
+We recommend using a non-aggregate expression in the `WHERE` clause although you can do this in a `HAVING` clause.
 
-Here is an example for typical use of HAVING clause:
+The aggregations in a `HAVING` clause are not necessarily the same as that in a select list. As an extension to the SQL standard, you're not restricted to using identifiers only in the `GROUP BY` list.
+For example:
 
 ```sql
 SELECT gender, sum(age)
@@ -121,7 +118,7 @@ HAVING sum(age) > 100;
 :--- | :---
 M | 101 |
 
-Here is another example for using alias in HAVING condition. Note that if an identifier is ambiguous, for example present both as a select alias and an index field, preference is alias. This means the identifier will be replaced by expression aliased in SELECT clause:
+Here's another example for using an alias in a `HAVING` condition.
 
 ```sql
 SELECT gender, sum(age) AS s
@@ -134,9 +131,11 @@ HAVING s > 100;
 :--- | :---
 M | 101 |
 
+If an identifier is ambiguous, for example, present both as a select alias and as an index field (preference is alias). In this case, the identifier is replaced with an expression aliased in the `SELECT` clause:
+
 ### HAVING without GROUP BY
 
-Additionally, a HAVING clause can work without GROUP BY clause. This is useful because aggregation is not allowed to be present in WHERE clause:
+You can use a `HAVING` clause without the `GROUP BY` clause. This is useful because aggregations are not supported in a `WHERE` clause:
 
 ```sql
 SELECT 'Total of age > 100'
