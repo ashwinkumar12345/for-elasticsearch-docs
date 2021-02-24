@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Index State Management
-nav_order: 30
+nav_order: 3
+parent: Index Management
 has_children: true
+has_toc: false
 ---
 
 # Index State Management
-Kibana
-{: .label .label-yellow :}
 
 If you analyze time-series data, you likely prioritize new data over old data. You might periodically perform certain operations on older indices, such as reducing replica count or deleting them.
 
